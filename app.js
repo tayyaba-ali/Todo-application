@@ -17,16 +17,15 @@ addBtn.addEventListener("click", (event) => {
         if (addBtn.innerHTML == "Add") {
             console.log(task.value.length)
             userTasks.innerHTML += `<div class="flex">
-    <li>${todo}</li> <div> <button  onclick="edit(event)" id="editBtn" >Edit</button>
+    <li>${todo}</li> <div> <button  onclick="edit(event)" >Edit</button>
     <button onclick = "dlt(event)">Delete</button>
     </div></div>`
             task.value = ""
 
         }
         else {
-        let editBtn =     document.querySelector("#editBtn")
-          edit(editBtn)
 
+            console.log("hello")
         }
 
     }
@@ -34,8 +33,8 @@ addBtn.addEventListener("click", (event) => {
 })
 
 const edit = (event) => {
-    let previousTodo = event.target.parentNode.parentNode.children[0].innerHTML
-    task.value = previousTodo
+    let previousTodo = event.target.parentNode.parentNode.children[0]
+    task.value = previousTodo.innerHTML
     addBtn.innerHTML = "Save"
 
 }
