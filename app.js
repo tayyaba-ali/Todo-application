@@ -5,21 +5,42 @@ let task = document.querySelector("#task")
 let userTasks = document.querySelector("#tasks")
 
 
-addBtn.addEventListener("click", () => {
+addBtn.addEventListener("click", (event) => {
     let todo = task.value
-
+    console.log(task.value)
     if (task.value === ""
 
     ) {
         alert("write something")
     }
     else {
-        userTasks.innerHTML += `<div class="flex">
-    <li>${todo}</li> <div> <button>Edit</button>
-    <button>Delete</button>
+        if (addBtn.innerHTML == "Add") {
+            console.log(task.value.length)
+            userTasks.innerHTML += `<div class="flex">
+    <li>${todo}</li> <div> <button  onclick="edit(event)" id="editBtn" >Edit</button>
+    <button onclick = "dlt(event)">Delete</button>
     </div></div>`
-        task.value = " "
+            task.value = ""
+
+        }
+        else {
+        let editBtn =     document.querySelector("#editBtn")
+          edit(editBtn)
+
+        }
 
     }
 
 })
+
+const edit = (event) => {
+    let previousTodo = event.target.parentNode.parentNode.children[0].innerHTML
+    task.value = previousTodo
+    addBtn.innerHTML = "Save"
+
+}
+
+
+const dlt = (event) => {
+    event.target.parentNode.parentNode.remove()
+}
